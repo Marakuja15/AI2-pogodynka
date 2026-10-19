@@ -8,5 +8,7 @@
 /var/
 /vendor/
 .idea/
-/.env.dev
+.env.dev
+.env.local
+.env.*.local
 ###< symfony/framework-bundle ###
