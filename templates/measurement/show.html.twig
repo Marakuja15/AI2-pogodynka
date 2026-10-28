@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Measurement{% endblock %}
+
+{% block body %}
+    <h1>Measurement</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ measurement.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ measurement.date ? measurement.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>TemperatureC</th>
+                <td>{{ measurement.temperatureC }}</td>
+            </tr>
+            <tr>
+                <th>FeelsLikeC</th>
+                <td>{{ measurement.feelsLikeC }}</td>
+            </tr>
+            <tr>
+                <th>PressureHpa</th>
+                <td>{{ measurement.pressureHpa }}</td>
+            </tr>
+            <tr>
+                <th>HumidityPercent</th>
+                <td>{{ measurement.humidityPercent }}</td>
+            </tr>
+            <tr>
+                <th>WindSpeedMs</th>
+                <td>{{ measurement.windSpeedMs }}</td>
+            </tr>
+            <tr>
+                <th>WindDirectionDeg</th>
+                <td>{{ measurement.windDirectionDeg }}</td>
+            </tr>
+            <tr>
+                <th>PrecipitationMn</th>
+                <td>{{ measurement.precipitationMn }}</td>
+            </tr>
+            <tr>
+                <th>CloudCoverPercent</th>
+                <td>{{ measurement.cloudCoverPercent }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ measurement.description }}</td>
+            </tr>
+            <tr>
+                <th>Source</th>
+                <td>{{ measurement.source }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_measurement_index') }}">back to list</a>
+
+    <a href="{{ path('app_measurement_edit', {'id': measurement.id}) }}">edit</a>
+
+    {{ include('measurement/_delete_form.html.twig') }}
+{% endblock %}
