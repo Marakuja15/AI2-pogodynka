@@ -129,7 +129,20 @@ class Measurement
     {
         return $this->windDirectionDeg;
     }
+    public function getCelsius(): ?float
+    {
+        return $this->temperatureC;
+    }
+    public function getFahrenheit(): ?float
+    {
+        return $this->getCelsius() !== null ? ($this->getCelsius() * 9 / 5) + 32 : null;
+    }
+    public function setCelsius(float|string|null $celsius): static
+    {
+        $this->temperatureC = $celsius !== null ? (float) $celsius : null;
 
+        return $this;
+    }
     public function setWindDirectionDeg(?int $windDirectionDeg): static
     {
         $this->windDirectionDeg = $windDirectionDeg;

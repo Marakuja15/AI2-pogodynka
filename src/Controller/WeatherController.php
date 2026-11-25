@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\LocationRepository;
-use App\Repository\MeasurementRepository;
+use App\Service\WeatherUtil;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -15,7 +15,7 @@ final class WeatherController extends AbstractController
         string $country,
         string $city,
         LocationRepository $locationRepository,
-        MeasurementRepository $measurementRepository,
+        WeatherUtil $util,
     ): Response {
         $location = $locationRepository->findOneByCountryAndCity($country, $city);
 
@@ -23,7 +23,7 @@ final class WeatherController extends AbstractController
             throw $this->createNotFoundException('Nie znaleziono lokalizacji.');
         }
 
-        $measurements = $measurementRepository->findByLocation($location);
+        $measurements = $util->getWeatherForLocation($location);
 
         return $this->render('weather/city.html.twig', [
             'location' => $location,
